@@ -5,6 +5,7 @@ import (
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/v5/middleware"
+	"github.com/livghit/zapp/ui"
 )
 
 type Server struct {
@@ -24,7 +25,9 @@ func CreateNewServer() *Server {
 }
 
 func addRoutes(router *chi.Mux) {
-	router.Get("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("hello"))
-	})
+	spaHandler, err := ui.SpaHandler()
+	if err != nil {
+		panic(err)
+	}
+	router.Handle("/*", spaHandler)
 }
