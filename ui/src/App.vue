@@ -1,3 +1,5 @@
 <template>
-  <p>hello</p>
+    <main>
+        <RouterView />
+    </main>
 </template>
